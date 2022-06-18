@@ -1,3 +1,9 @@
+'''
+Muhammad Mukhlis | Purwadhika
+JC Data Science and Machine Learning
+Exam Project Modul 1 : Programming Fundamental
+'''
+
 def menuread():
     while True :
         lihattdata = (input('''
