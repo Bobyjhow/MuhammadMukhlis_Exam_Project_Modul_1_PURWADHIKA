@@ -1,16 +1,17 @@
 def menuread():
     while True :
-        lihattdata = (input('''Ingin Lihat Data? [1/2]
-    1 -> Tampilkan seluruh data
-    2 -> Lanjut ke cari data secara spesifik atau keluar
+        lihattdata = (input('''
+Ingin Lihat Data? [1/Tekan Selain 1]
+    1 --------------> Tampilkan seluruh data
+    Tekan Selain 1 -> Lanjut ke cari data secara spesifik atau keluar
     : '''))
         if lihattdata =='1':
             lihatdata()
             continue
         else:
-            spesifik = input('''Cari Data Secara Spesifik? [1/2]
-    1 -> Cari data secara spesifik
-    2 -> Ke Menu Proceed (Exit) 
+            spesifik = input('''Cari Data Secara Spesifik? [1/Tekan Selain 1]
+    1 --------------> Cari data secara spesifik
+    Tekan Selain 1 -> Ke Menu Proceed (Exit) 
     :''')
             if spesifik == '1':
                 if len(listdata) == 0:
@@ -48,11 +49,18 @@ def menuread():
                         if x == 0:
                             templatedatatidakada()
                     elif dataspesifik == '3':
-                        caridata = int(input('Masukkan NISN yang ingin dicari: '))
+                        while True:
+                            caridata = input('Masukkan NISN yang ingin dicari: ')
+                            w = caridata.isnumeric()
+                            if w == True:
+                                w = int(caridata)
+                                break
+                            else :
+                                templatestring()
                         templatecaridata()
                         x = 0
                         for i in range(len(listdata)):
-                            if caridata == listdata[i][2]:
+                            if w == listdata[i][2]:
                                 x += 1
                                 if x == 1:
                                     print('Nomor Unik| KelaS | Nama\t| NISN       | Nilai Matematika | Nilai Fisika  | Nilai Kimia\t| Nilai Biologi ')
@@ -60,9 +68,9 @@ def menuread():
                         if x == 0:
                             templatedatatidakada()
             else:
-                yakin = input('''Anda yakin tidak ingin mencari data? [1/2]
-    1 -> Kembali ke Menu Utama
-    2 -> Kembali ke Menu Pencarian
+                yakin = input('''Anda yakin tidak ingin mencari data? [1/Tekan Selain 1]
+    1 --------------> Kembali ke Menu Utama
+    Tekan Selain 1 -> Kembali ke Menu Pencarian
     : ''')
                 if yakin == '1':
                     break   
@@ -70,9 +78,9 @@ def menuread():
 def menutambahdata():
     while True :
         lihatdata()
-        tambahdata = (input('''Ingin tambahkan data? [1/2]
-    1 -> Lanjut tambah data
-    2 -> Ke menu proceed (Exit)
+        tambahdata = (input('''Ingin tambahkan data? [1/Tekan Selain 1]
+    1 --------------> Lanjut tambah data
+    Tekan Selain 1 -> Ke menu proceed (Exit)
     : '''))
         if tambahdata == '1':
             if len(listdata) == 0:
@@ -84,9 +92,9 @@ def menutambahdata():
                 fis = (input('Masukkan Nilai Fisika {}: '.format(nama)))
                 kim = (input('Masukkan Nilai Kimia {}: '.format(nama)))
                 bio = (input('Masukkan Nilai Biologi {}: '.format(nama)))
-                simpan = input('''Apakah data sudah benar dan ingin disimpan? [1/2]
-    1 -> Simpan Data
-    2 -> Kembali ke Menu Tambah Data
+                simpan = input('''Apakah data sudah benar dan ingin disimpan? [1/Tekan Selain 1]
+    1 --------------> Simpan Data
+    Tekan Selain 1 -> Kembali ke Menu Tambah Data
     : ''')
                 if simpan == '1':
                     listdata.append([kelas,nama,nisn,mtk,fis,kim,bio])
@@ -117,17 +125,17 @@ Nama sudah ada di dalam Database
                     fis = (input('Masukkan Nilai Fisika {}: '.format(nama)))
                     kim = (input('Masukkan Nilai Kimia {}: '.format(nama)))
                     bio = (input('Masukkan Nilai Biologi {}: '.format(nama)))
-                    simpan = input('''Apakah data sudah benar dan ingin disimpan? [1/2]
-    1 -> Simpan Data
-    2 -> Kembali ke Menu Tambah Data
+                    simpan = input('''Apakah data sudah benar dan ingin disimpan? [1/Tekan Selain 1]
+    1 --------------> Simpan Data
+    Tekan Selain 1 -> Kembali ke Menu Tambah Data
     : ''')
                     if simpan == '1':
                         listdata.append([kelas,nama,nisn,mtk,fis,kim,bio])
                         print('\nData Tersimpan\n')
         else:
-            yakin = input('''Anda yakin tidak ingin menambahkan data? [1/2]
-    1 -> Kembali ke Menu Utama
-    2 -> Kembali ke Menu Tambah Data
+            yakin = input('''Anda yakin tidak ingin menambahkan data? [1/Tekan Selain 1]
+    1 --------------> Kembali ke Menu Utama
+    Tekan Selain 1 -> Kembali ke Menu Tambah Data
     : ''')
             if yakin == '1':
                 break
@@ -139,19 +147,26 @@ def menuupdate():
             break
         elif len(listdata)>0:
             dataada()
-        updatedata = (input('''Ingin update data? [1/2]
-    1 -> Lanjut update
-    2 -> Ke Menu Proceed (Exit)
+        updatedata = (input('''Ingin update data? [1/Tekan Selain 1]
+    1 --------------> Lanjut update
+    Tekan Selain 1 -> Ke Menu Proceed (Exit)
     : '''))
         if updatedata == '1':
-            nomorunik = int(input('Masukkan Nomor Unik siswa yang ingin diubah: '))
-            if 1 <= nomorunik <= len(listdata):
+            while True:
+                nomorunik = input('Masukkan Nomor Unik siswa yang ingin diubah: ')
+                q = nomorunik.isnumeric()
+                if q == True:
+                    q = int(nomorunik)
+                    break
+                else :
+                    templatestring()
+            if 1 <= q <= len(listdata):
                 global j 
-                j = nomorunik
+                j = q
                 deleteupdate(j)
-                updatedata = (input('''Lanjut update data? [1/2]
-    1 -> Lanjut ke input perubahan data
-    2 -> Kembali ke Menu Update
+                updatedata = (input('''Lanjut update data? [1/Tekan Selain 1]
+    1 --------------> Lanjut ke input perubahan data
+    Tekan Selain 1 -> Kembali ke Menu Update
     : '''))
                 if updatedata == '1':
                     datadiupdate()
@@ -161,9 +176,9 @@ def menuupdate():
                 nomoruniksalah()
                 continue
         else:
-            yakin = input('''Anda yakin tidak ingin update data? [1/2]
-    1 -> Kembali ke Menu Utama
-    2 -> Kembali ke Menu Update
+            yakin = input('''Anda yakin tidak ingin update data? [1/Tekan Selain 1]
+    1 --------------> Kembali ke Menu Utama
+    Tekan Selain 1 -> Kembali ke Menu Update
     : ''')
             if yakin == '1':
                 break
@@ -175,31 +190,45 @@ def menudelete():
             break
         elif len(listdata)>0:
             dataada()
-        delettedata = (input('''Ingin delete data? [1/2]
-    1 -> Lanjut delete
-    2 -> Ke Menu Proceed (Exit)
+        delettedata = (input('''
+Ingin delete data? [1/Tekan Selain 1]
+    1 --------------> Lanjut Delete
+    Tekan Selain 1 -> Ke Menu Proceed (Exit)
     : '''))
-        if delettedata == 'y':
-            nomorunik = int(input('Masukkan Nomor Unik siswa yang ingin dihapus: '))
-            if 1 <= nomorunik <= len(listdata):
+        if delettedata == '1':
+            while True:
+                nomorunik = input('Masukkan Nomor Unik siswa yang ingin dihapus: ')
+                e = nomorunik.isnumeric()
+                if e == True:
+                    e = int(nomorunik)
+                    break
+                else:
+                    templatestring()
+            if 1 <= e <= len(listdata):
                 global j
-                j = nomorunik
+                j = e
                 deleteupdate(j)
-                delettedata = (input('''Lanjut delete data? [1/2]
-    1 -> Data akan dihapus
-    2 -> Kembali ke Menu Delete
+                delettedata = (input('''
+Lanjut delete data? [1/Tekan Selain 1]
+    1 --------------> Data akan dihapus
+    Tekan Selain 1 -> Kembali ke Menu Delete
     : '''))
                 if delettedata == '1':
                     del listdata[j-1]
+                    print('''
+    =================================
+    DATA YANG DIPILIH SUDAH DIHAPUS!!
+    =================================
+    ''')
                 else :
                     continue    
             else :
                 nomoruniksalah()
                 continue
         else:
-            yakin = input('''Anda yakin tidak ingin mendelete data? [1/2]
-    1 -> Kembali ke Menu Utama
-    2 -> Kembali ke Menu Delete
+            yakin = input('''Anda yakin tidak ingin mendelete data? [1/Tekan Selain 1]
+    1 --------------> Kembali ke Menu Utama
+    Tekan Selain 1 -> Kembali ke Menu Delete
     : ''')
             if yakin == '1':
                 break
@@ -208,24 +237,55 @@ def menudelete():
         continue
 def kelasinput(digit):
     while True:
-        kelas = input('Masukkan Kelas Siswa (A-Z): ')
+        while True:
+            kelas = input('Masukkan Kelas Siswa (1 Huruf A - Z): ')
+            t = kelas.isnumeric()
+            if t == False:
+                break
+            else:
+                print('''
+    =================================
+         JANGAN MASUKKAN ANGKA!!!
+    =================================
+    ''')
         kelas = kelas.upper()
         if len(kelas) == digit:
             return kelas
         else:
-            continue
+            print('''
+    =================================
+        MASUKKAN HANYA 1 HURUF !!
+    =================================
+    ''')
 def nisninput(digit):
     while True:
-        nisn = int(input('Masukkan Nomor NISN Siswa (10 Digit): '))
-        number = nisn
+        while True:
+            nisn = input('Masukkan Nomor NISN Siswa (10 Digit): ')
+            r = nisn.isnumeric()
+            if r == True:
+                r = int(nisn)
+                break
+            else:
+                templatestring()
+        number = r
         count = 0
         while(number != 0):
             number //= 10
             count += 1
         if count == digit:
-            return nisn
+            return r
         else:
-            continue
+            print('''
+    =================================
+       MASUKKAN HANYA 10 DIGIT !!!
+    =================================
+    ''')
+def templatestring():
+    print('''
+    =================================
+        JANGAN MASUKKAN STRING !!
+    =================================
+    ''')
 def templatecaridata():
     print('''
     =================================
@@ -234,9 +294,9 @@ def templatecaridata():
     ''')
 def templatedatatidakada():
     print('''
-    =============================
-        Data tidak ditemukan
-    =============================
+    ================================
+          Data tidak ditemukan
+    ================================
     ''')  
 def dataada():
     print('\nDaftar Nilai Siswa\n')
@@ -270,64 +330,92 @@ def deleteupdate(j):
     print('{}\t  | {}     | {}\t| {} | {}  \t| {}  \t| {}  \t| {}'.format(j,listdata[j-1][0],listdata[j-1][1],listdata[j-1][2],listdata[j-1][3],listdata[j-1][4],listdata[j-1][5],listdata[j-1][6])) 
 def datadiupdate():
     while True:
-        kolompilih = int(input('''
-Pilih nomor kolom yang ingin di update [kelas = 0 / nama = 1 / nisn = 2 / matematika = 3 / fisika = 4 / kimia = 5 / bio = 6]
-: '''))
-        if kolompilih == 0:
+        while True:
+            kolompilih = input('''
+Pilih nomor kolom yang ingin di update [KELAS = 0 / NAMA = 1 / NISN = 2 / MATEMATIKA = 3 / FISIKA = 4 / KIMIA = 5 / BIO = 6]
+: ''')
+            t = kolompilih.isnumeric()
+            if t == True:
+                t = int(kolompilih)
+                break
+            else:
+                templatestring()
+        if t == 0:
             kolombaru = kelasinput(1)
-            simpan = input('Apakah data sudah benar dan ingin diupdate? [1/2]: ')
+            simpan = input('''Apakah data sudah benar dan ingin diupdate? [1/Tekan Selain 1]
+    1 --------------> Data akan diubah
+    Tekan Selain 1 -> Data tidak diubah
+    : ''')
             if simpan == '1':
-                listdata[j-1][kolompilih] = kolombaru
+                listdata[j-1][t] = kolombaru
                 print('\nData Terupdate\n')
                 break
             else:
                 break
-        elif kolompilih == 1:
+        elif t == 1:
             kolombaru = input('Silahkan masukkan nama baru: ')
             kolombaru = kolombaru.upper()
-            simpan = input('Apakah data sudah benar dan ingin diupdate? [1/2]: ')
+            simpan = input('''Apakah data sudah benar dan ingin diupdate? [1/Tekan Selain 1]
+    1 --------------> Data akan diubah
+    Tekan Selain 1 -> Data tidak diubah
+    : ''')
             if simpan == '1':
-                listdata[j-1][kolompilih] = kolombaru
+                listdata[j-1][t] = kolombaru
                 print('\nData Terupdate\n')
             else:
                 break
-        elif kolompilih == 2:
+        elif t == 2:
             kolombaru = nisninput(10)
-            simpan = input('Apakah data sudah benar dan ingin diupdate? [1/2]: ')
+            simpan = input('''Apakah data sudah benar dan ingin diupdate? [1/Tekan Selain 1]
+    1 --------------> Data akan diubah
+    Tekan Selain 1 -> Data tidak diubah
+    : ''')
             if simpan == '1':
-                listdata[j-1][kolompilih] = kolombaru
+                listdata[j-1][t] = kolombaru
                 print('\nData Terupdate\n')
             else:
                 break
-        elif kolompilih == 3:
+        elif t == 3:
             kolombaru = input('Silahkan masukkan nilai matematika baru: ')
-            simpan = input('Apakah data sudah benar dan ingin diupdate? [1/2]: ')
+            simpan = input('''Apakah data sudah benar dan ingin diupdate? [1/Tekan Selain 1]
+    1 --------------> Data akan diubah
+    Tekan Selain 1 -> Data tidak diubah
+    : ''')
             if simpan == '1':
-                listdata[j-1][kolompilih] = kolombaru
+                listdata[j-1][t] = kolombaru
                 print('\nData Terupdate\n')
             else:
                 break 
-        elif kolompilih == 4:
+        elif t == 4:
             kolombaru = input('Silahkan masukkan nilai fisika baru: ')
-            simpan = input('Apakah data sudah benar dan ingin diupdate? [1/2]: ')
+            simpan = input('''Apakah data sudah benar dan ingin diupdate? [1/Tekan Selain 1]
+    1 --------------> Data akan diubah
+    Tekan Selain 1 -> Data tidak diubah
+    : ''')
             if simpan == '1':
-                listdata[j-1][kolompilih] = kolombaru
+                listdata[j-1][t] = kolombaru
                 print('\nData Terupdate\n')
             else:
                 break
-        elif kolompilih == 5:
+        elif t == 5:
             kolombaru = input('Silahkan masukkan nilai kimia baru: ')
-            simpan = input('Apakah data sudah benar dan ingin diupdate? [1/2]: ')
+            simpan = input('''Apakah data sudah benar dan ingin diupdate? [1/Tekan Selain 1]
+    1 --------------> Data akan diubah
+    Tekan Selain 1 -> Data tidak diubah
+    : ''')
             if simpan == '1':
-                listdata[j-1][kolompilih] = kolombaru
+                listdata[j-1][t] = kolombaru
                 print('\nData Terupdate\n')
             else:
                 break
-        elif kolompilih == 6:
+        elif t == 6:
             kolombaru = input('Silahkan masukkan nilai biologi baru: ')
-            simpan = input('Apakah data sudah benar dan ingin diupdate? [1/2]: ')
+            simpan = input('''Apakah data sudah benar dan ingin diupdate? [1/Tekan Selain 1]
+    1 --------------> Data akan diubah
+    Tekan Selain 1 -> Data tidak diubah
+    : ''')
             if simpan == '1':
-                listdata[j-1][kolompilih] = kolombaru
+                listdata[j-1][t] = kolombaru
                 print('\nData Terupdate\n')
             else:
                 break
@@ -353,7 +441,7 @@ while True :
 
         Masukkan Angka Menu yang ingin dijalankan : ''')
 
-    if(pilihanMenu == '1') :
+    if(pilihanMenu ==   '1') :
         menuread() 
     elif(pilihanMenu == '2') :
         menutambahdata()
@@ -366,7 +454,9 @@ while True :
     else:
         print('''
         ==============================
+        ==============================
         Masukkan pilihan dengan benar!
+        ==============================
         ==============================
         ''')
 
