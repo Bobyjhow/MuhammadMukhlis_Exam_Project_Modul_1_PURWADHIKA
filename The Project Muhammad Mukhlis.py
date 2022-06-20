@@ -38,7 +38,7 @@ Ingin Lihat Data? [1/Tekan Selain 1]
                             if caridata == listdata[i][1]:
                                 x = 1
                                 print('Nomor Unik| KelaS | Nama\t| NISN       | Nilai Matematika | Nilai Fisika  | Nilai Kimia\t| Nilai Biologi ')
-                                print('{}\t  | {}     | {}\t| {} | {}\t\t| {}\t\t| {}\t\t| {}'.format(i,listdata[i][0],listdata[i][1],listdata[i][2],listdata[i][3],listdata[i][4],listdata[i][5],listdata[i][6])) 
+                                print('{}\t  | {}     | {}\t| {} | {}\t\t| {}\t\t| {}\t\t| {}'.format(i+1,listdata[i][0],listdata[i][1],listdata[i][2],listdata[i][3],listdata[i][4],listdata[i][5],listdata[i][6])) 
                         if x == 0:
                             templatedatatidakada()  # line 308     
                     elif dataspesifik == '2':
@@ -51,7 +51,7 @@ Ingin Lihat Data? [1/Tekan Selain 1]
                                 x += 1
                                 if x == 1:
                                     print('Nomor Unik| KelaS | Nama\t| NISN       | Nilai Matematika | Nilai Fisika  | Nilai Kimia\t| Nilai Biologi ')
-                                print('{}\t  | {}     | {}\t| {} | {}\t\t| {}\t\t| {}\t\t| {}'.format(i,listdata[i][0],listdata[i][1],listdata[i][2],listdata[i][3],listdata[i][4],listdata[i][5],listdata[i][6]))
+                                print('{}\t  | {}     | {}\t| {} | {}\t\t| {}\t\t| {}\t\t| {}'.format(i+1,listdata[i][0],listdata[i][1],listdata[i][2],listdata[i][3],listdata[i][4],listdata[i][5],listdata[i][6]))
                         if x == 0:
                             templatedatatidakada() # line 308
                     elif dataspesifik == '3':
@@ -70,7 +70,7 @@ Ingin Lihat Data? [1/Tekan Selain 1]
                                 x += 1
                                 if x == 1:
                                     print('Nomor Unik| KelaS | Nama\t| NISN       | Nilai Matematika | Nilai Fisika  | Nilai Kimia\t| Nilai Biologi ')
-                                print('{}\t  | {}     | {}\t| {} | {}\t\t| {}\t\t| {}\t\t| {}'.format(i,listdata[i][0],listdata[i][1],listdata[i][2],listdata[i][3],listdata[i][4],listdata[i][5],listdata[i][6]))
+                                print('{}\t  | {}     | {}\t| {} | {}\t\t| {}\t\t| {}\t\t| {}'.format(i+1,listdata[i][0],listdata[i][1],listdata[i][2],listdata[i][3],listdata[i][4],listdata[i][5],listdata[i][6]))
                         if x == 0:
                             templatedatatidakada() # line 308
             else:
@@ -115,9 +115,9 @@ Apakah data sudah benar dan ingin disimpan? [1/Tekan Selain 1]
                 nama = nama.upper()
                 for i in range(len(listdata)):
                     if listdata[i][1] == nama:
-                        print('nama sudah ada')
+                        # jika nama sama
                         x = 1
-                        break
+                        # x menjadi 1
                     else:
                         continue
                 if x == 1:
@@ -252,7 +252,7 @@ def kelasinput(digit):
     while True:
         while True:
             kelas = input('Masukkan Kelas Siswa (1 Huruf A - Z): ')
-            t = kelas.isnumeric()
+            t = kelas.isnumeric() # true ketika hanya angka
             if t == False:
                 break
             else:
@@ -447,7 +447,7 @@ Apakah data sudah benar dan ingin diupdate? [1/Tekan Selain 1]
                 ''')
             continue
         break
-listdata = []
+listdata = [] # format list = [[kelas,nama,nisn,mtk,fis,kim,bio]]
 while True :
     pilihanMenu = input('''
         Selamat Datang di Database Nilai Akademik
